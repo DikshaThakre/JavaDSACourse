@@ -1,20 +1,32 @@
+import java.util.Arrays;
+
 public class BubbleSort {
-    void bubbleSort(int arr[]){
-        int temp;
-        for (int i = 0; i < arr.length-1; i++) {
-            for (int j = 0; j < arr.length-1; j++) {
-                if(arr[i] > arr[i+1]){
-                    temp = arr[i+1];
-                    arr[i+1] = arr[i];
-                    arr[i] = temp;
+    public static void main(String[] args) {
+       int[] arr = {-1, 7, -32, 0, 39};
+       bubble(arr);
+       System.out.println(Arrays.toString(arr));
+    }
+
+    static void bubble(int[] arr){
+        boolean swapped = true;
+        //run the steps n-1 times
+        for (int i = 0; i < arr.length; i++) {
+            swapped = false;
+            //for each step, max item will come at the last respective inedx
+            for (int j = 1; j < arr.length-i; j++) {
+                //swap if the item is smaller than the previous item
+                if(arr[j] < arr[j-1]){
+                    //swap
+                    int temp = arr[j];
+                    arr[j] = arr[j-1];
+                    arr[j-1] = temp;
+                    swapped = true;
                 }
             }
-                System.out.println(arr[i]);
+            //if you did not swap for a particular value of i, it means the array is sorted hence stop the program
+            if(!swapped){ //!false = true
+                break;
+            }
         }
-    }
-    public static void main(String[] args) {
-        int[] arr = {89, 76, 34, 45};
-        BubbleSort bs = new BubbleSort();
-        bs.bubbleSort(arr);
     }
 }
